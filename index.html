@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div class="extra-pic">
+        <img src="green man.png" id="pic-one" alt="">
+        <img src="green hand.png" id="pic-two" alt="">
+    </div>
+    <div class="circle">
+        <img src="question mark.png"  id="pic-three" alt="">
+    </div>
+    <div class="quiz">
+        <div class="number">
+            <p>Questions:</p>
+            <p id="question-count">0</p>
+            <p>/5</p>
+        </div>
+    </div>
+    <div class="main">
+        <h2>Answer the questions.</h2>
+        <div class="para">
+            <p id="question-list"></p>
+        </div>
+        <div class="answers">
+            <ul id="answer-list">
+            </ul>
+        </div>
+        <div class="score">
+            <p>Score:</p>
+            <p id="score-count">0</p>
+            <p>/5</p>
+        </div>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-chevron-left" id="left"></i>
+        <i class="fa-solid fa-chevron-right" id="right"></i>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
