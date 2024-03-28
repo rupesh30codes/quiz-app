@@ -5,17 +5,19 @@ const questionList = document.getElementById('question-list');
 const answerList = document.getElementById('answer-list');
 const questionCount = document.getElementById('question-count');
 const scoreCount = document.getElementById('score-count');
+const totalQuestion=document.getElementById('total-question');
 
-const questions = ['1. How many elements are in the periodic table? ', '2. What is the most common surname in the United States?', '3. What does "du bist ein hund" mean in German?', '4. Who was the Ancient Greek God of the Sun?','5. What country has the highest life expectancy?'];
+const questions = ['1. How many elements are in the periodic table? ', '2. What is the most common surname in the United States?', '3. What does "du bist ein hund" mean in German?', '4. Who was the Ancient Greek God of the Sun?','5. What country has the highest life expectancy?','What is the capital city of Nepal'];
 const answers = [
     ["198", "116", "118", "32"],
     ["Hawkins", "Smith", "Walter", "Dickinson"],
     ["You are a dog", "He is smart", "Goodbye, I am sorry!", "You are a student"],
     ["Rupesh Bardewa", "Ammit", "Khonsu", "Apollo"],
-    ["Nepal","Korea","Hong Kong","Russia"]
+    ["Nepal","Korea","Hong Kong","Russia"],
+    ["Kathmandu", "Kanchanpur","Damak","Itahari"]
 ];
-
-const correctAnswers = [2, 1, 0, 3,2];
+totalQuestion.textContent = `/${questions.length}`;
+const correctAnswers = [2, 1, 0, 3,2,0];
 let currentQuestionIndex = 0;
 let score = 0;
 
