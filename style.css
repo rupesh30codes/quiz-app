@@ -5,7 +5,7 @@
 }
 body{
     background-image: url("Green\ &\ Gray\ Simple\ Quiz\ Instagram\ Story.jpg");
-    min-height: 100vh;
+    height: 100vh;
     object-fit: contain;
 }
 #pic-one{
@@ -105,7 +105,7 @@ h2{
 #right{
     position:absolute;
     right: 14.5%;
-    top: 50%;
+    top: 55%;
 }
 p{
     display: inline;
@@ -124,4 +124,34 @@ p{
     padding: 5px;
     border-radius: 1rem;
     text-align: center;
+}
+@media screen and (max-width: 700px) {
+    .quiz {
+        width: 80%;
+        position: absolute;
+        left: 10%;
+    }
+
+    #left {
+        left: 5%;
+    }
+
+    #right {
+        right: 5%;
+    }
+
+    .main {
+        width: 65%;
+        position: absolute;
+        left: 18%;
+    }
+    .score{
+        position: absolute;
+        right: 40%;
+        width: 100px;
+        font-size: 14px;
+    }
+    .answers ul li{
+        width: 350px;
+    }
 }
