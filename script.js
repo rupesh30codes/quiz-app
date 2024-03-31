@@ -1,6 +1,5 @@
 const leftIcon = document.getElementById('left');
 const rightIcon = document.getElementById('right');
-
 const questionList = document.getElementById('question-list');
 const answerList = document.getElementById('answer-list');
 const questionCount = document.getElementById('question-count');
@@ -22,20 +21,13 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function updateQuestion() {
-    questionList.innerHTML = questions[currentQuestionIndex];
-    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => {
-        const isSelected = selectedAnswers[currentQuestionIndex] === index;
-        const backgroundColor = isSelected ? (index === correctAnswers[currentQuestionIndex] ? 'green' : 'red') : '';
-        return `<li onclick="checkAnswer(${index})" style="background-color: ${backgroundColor};">${answer}</li>`;
-    }).join('');
+    questionList.textContent = questions[currentQuestionIndex];
+    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => `<li onclick="checkAnswer(${index})">${answer}</li>`).join('');
     questionCount.textContent = currentQuestionIndex + 1;
-    scoreCount.textContent = score;
     rightIcon.style.pointerEvents = 'none';
     rightIcon.classList.add('disabled');
     checkQuizCompletion();
 }
-
-const selectedAnswers = new Array(questions.length).fill(null);
 
 function checkAnswer(selectedIndex) {
     const correctIndex = correctAnswers[currentQuestionIndex];
@@ -50,12 +42,9 @@ function checkAnswer(selectedIndex) {
         answerList.children[correctIndex].style.backgroundColor = 'green';
     }
 
-    selectedAnswers[currentQuestionIndex] = selectedIndex;
-
-    // Disable further clicks on answer options
-    Array.from(answerList.children).forEach(item => {
+    // Disable further clicks on answer options for this question
+    answerList.querySelectorAll('li').forEach(item => {
         item.onclick = null;
-        item.style.pointerEvents = 'none';
     });
 
     if (currentQuestionIndex === questions.length - 1) {
