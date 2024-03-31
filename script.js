@@ -7,7 +7,7 @@ const questionCount = document.getElementById('question-count');
 const scoreCount = document.getElementById('score-count');
 const totalQuestion = document.getElementById('total-question');
 
-const questions = ['1. How many elements are in the periodic table? ', '2. What is the most common surname in the United States?', '3. What does "du bist ein hund" mean in German?', '4. Who was the Ancient Greek God of the Sun?', '5. What country has the highest life expectancy?', '6. What is the capital city of Nepal'];
+const questions = ['1. How many elements are in the periodic table?', '2. What is the most common surname in the United States?', '3. What does "du bist ein hund" mean in German?', '4. Who was the Ancient Greek God of the Sun?', '5. What country has the highest life expectancy?', '6. What is the capital city of Nepal'];
 const answers = [
     ["198", "116", "118", "32"],
     ["Hawkins", "Smith", "Walter", "Dickinson"],
@@ -20,17 +20,11 @@ totalQuestion.textContent = `/${questions.length}`;
 const correctAnswers = [2, 1, 0, 3, 2, 0];
 let currentQuestionIndex = 0;
 let score = 0;
-let selectedAnswers = new Array(questions.length).fill(null);
 
 function updateQuestion() {
-    questionList.innerHTML = `${questions[currentQuestionIndex]}`;
-    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => {
-        const isSelected = selectedAnswers[currentQuestionIndex] === index;
-        const backgroundColor = isSelected ? (index === correctAnswers[currentQuestionIndex] ? 'green' : 'red') : '';
-        return `<li onclick="checkAnswer(${index})" style="background-color: ${backgroundColor};">${answer}</li>`;
-    }).join('');
+    questionList.innerHTML = questions[currentQuestionIndex];
+    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => `<li onclick="checkAnswer(${index})">${answer}</li>`).join('');
     questionCount.textContent = currentQuestionIndex + 1;
-    scoreCount.textContent = score;
     rightIcon.style.pointerEvents = 'none';
     rightIcon.classList.add('disabled');
     checkQuizCompletion();
@@ -48,8 +42,6 @@ function checkAnswer(selectedIndex) {
         selectedAnswer.style.backgroundColor = 'red';
         answerList.children[correctIndex].style.backgroundColor = 'green';
     }
-
-    selectedAnswers[currentQuestionIndex] = selectedIndex;
 
     Array.from(answerList.children).forEach(item => {
         item.style.pointerEvents = 'none';
