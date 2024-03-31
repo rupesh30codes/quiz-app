@@ -23,12 +23,19 @@ let score = 0;
 
 function updateQuestion() {
     questionList.innerHTML = questions[currentQuestionIndex];
-    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => `<li onclick="checkAnswer(${index})">${answer}</li>`).join('');
+    answerList.innerHTML = answers[currentQuestionIndex].map((answer, index) => {
+        const isSelected = selectedAnswers[currentQuestionIndex] === index;
+        const backgroundColor = isSelected ? (index === correctAnswers[currentQuestionIndex] ? 'green' : 'red') : '';
+        return `<li onclick="checkAnswer(${index})" style="background-color: ${backgroundColor};">${answer}</li>`;
+    }).join('');
     questionCount.textContent = currentQuestionIndex + 1;
+    scoreCount.textContent = score;
     rightIcon.style.pointerEvents = 'none';
     rightIcon.classList.add('disabled');
     checkQuizCompletion();
 }
+
+const selectedAnswers = new Array(questions.length).fill(null);
 
 function checkAnswer(selectedIndex) {
     const correctIndex = correctAnswers[currentQuestionIndex];
@@ -43,7 +50,11 @@ function checkAnswer(selectedIndex) {
         answerList.children[correctIndex].style.backgroundColor = 'green';
     }
 
+    selectedAnswers[currentQuestionIndex] = selectedIndex;
+
+    // Disable further clicks on answer options
     Array.from(answerList.children).forEach(item => {
+        item.onclick = null;
         item.style.pointerEvents = 'none';
     });
 
